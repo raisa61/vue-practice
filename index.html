@@ -18,9 +18,17 @@
     </header>
     <section id="events">
       <h2>Events in Action</h2>
-      <button>Add</button>
-      <button>Remove</button>
+      <button @click="addNumber(5)">Add</button>
+      <button @click="reduceNumber(5)">Remove</button>
+      <p v-once>Starting counter: {{ counter }}</p>
       <p>Result: {{ counter }}</p>
+      <input type="text" @input="setName($event, 'Zaman')">
+      <p>your name: {{ name }}</p>
+      <!-- event modifiers -->
+      <form @submit.prevent="submitForm">
+        <input type="text">
+        <button>Sign Up</button>
+      </form>
     </section>
   </body>
 </html>
