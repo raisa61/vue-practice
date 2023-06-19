@@ -1,21 +1,26 @@
 const app = Vue.createApp({
   data() {
     return {
-      courseGoalA: "Finish the course and learn vue.",
-      courseGoalB: "Just testing <i>raw html</i>",
-      vueLink: "https://vuejs.org/",
+      counter: 0,
+      result: "",
     };
   },
   methods: {
-    changeGoal() {
-      const randomNumber = Math.random();
-      if (randomNumber < 0.5) {
-        return this.courseGoalA;
+    add(num) {
+      return (this.counter = this.counter + num);
+    },
+  },
+  computed: {
+    calculatedResult() {
+      if (this.counter < 37) {
+        return (this.result = "Not there yet");
+      } else if (this.counter == 37) {
+        return (this.result = "Oh wow");
       } else {
-        return this.courseGoalB;
+        return (this.result = "Too much!");
       }
     },
   },
 });
 
-app.mount("#user-goal");
+app.mount("#assignment");
