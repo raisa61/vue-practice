@@ -1,21 +1,44 @@
 const app = Vue.createApp({
   data() {
     return {
-      courseGoalA: "Finish the course and learn vue.",
-      courseGoalB: "Just testing <i>raw html</i>",
-      vueLink: "https://vuejs.org/",
+      counter: 0,
+      name: "",
+      fullname: "",
     };
   },
-  methods: {
-    changeGoal() {
-      const randomNumber = Math.random();
-      if (randomNumber < 0.5) {
-        return this.courseGoalA;
-      } else {
-        return this.courseGoalB;
+  watch: {
+    // name(value) { //means whenever name changes, this method will re-execute
+    //   this.fullname = value + " " + "zaman";
+    // },
+    counter(value) {
+      if (value > 50) {
+        this.counter = 0;
       }
+    },
+  },
+  computed: {
+    // fullname() {
+    //   return this.name + " " + "zaman";
+    // },
+  },
+  methods: {
+    outputFullname() {
+      return this.name + " " + "Zaman";
+    },
+    setName(event, lastName) {
+      this.name = event.target.value + " " + lastName;
+    },
+    add(num) {
+      this.counter = this.counter + num;
+    },
+    reduce(num) {
+      this.counter = this.counter - num;
+      // this.counter--;
+    },
+    resetInput() {
+      this.name = "";
     },
   },
 });
 
-app.mount("#user-goal");
+app.mount("#events");
