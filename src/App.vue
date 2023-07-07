@@ -5,7 +5,7 @@
     </header>
     <new-friend @add-new-friend="addNewFriend"/>
     <ul>
-      <friend-contact v-for="friend in friends" :key="friend.name" :id="friend.id" :name="friend.name" :phone-number="friend.phone" :email-address="friend.email" :is-favorite="friend.isFavorite" @toggle-favorite="toggleFavoriteStatus"></friend-contact>
+      <friend-contact v-for="friend in friends" :key="friend.name" :id="friend.id" :name="friend.name" :phone-number="friend.phone" :email-address="friend.email" :is-favorite="friend.isFavorite" @toggle-favorite="toggleFavoriteStatus" @delete-friend="deleteAFriend"></friend-contact>
     </ul>
   </section>
 </template>
@@ -46,6 +46,10 @@ export default {
         isFavorite: false,
       }
       this.friends.push(newFriend);
+    },
+    deleteAFriend(friendId) {
+      const identifiedFriend = this.friends.find(friend => friend.id === friendId);
+      this.friends.unshift(identifiedFriend);
     }
   }
 };
